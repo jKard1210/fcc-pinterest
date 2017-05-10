@@ -1,0 +1,54 @@
+<head>
+    
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    
+    <style>
+          body   { padding-top:80px; word-wrap:break-word; background-image: url("http://www.designbolts.com/wp-content/uploads/2013/02/Carbonfiber-semi-dark-Grey-Seamless-Pattern-For-Website-Background.jpg"); opacity: 60% }
+          a {font-size: 30px;  padding: 10px 10px 10px 10px; color: black; margin-top: 50px; }
+          .title {background-color: gray; opacity: 80%; border-radius: 30px; color: white; margin-bottom: 30px;}
+          h1 {font-size: 100px; margin-top: 20px; margin-bottom: 0px;}
+          h2 {margin-top: 10px; font-size: 25px;}
+          .pagehead {font-size: 50px; margin-top: 20px; padding-bottom: 10px; opacity: 40%; color: white; border-bottom: 5px; border-color: black;}
+    </style>
+    
+    </head>
+    
+    
+    <body>
+    <div class = "container text-center">
+        <div class = "title">
+            <h1>Pinterest Cntrl-C</h1>
+            <a href = "/logout">Logout</a>
+        <a href = "/recent">View Recent Images</a>
+        </div>
+        <h2 class = "pagehead">Your Images</h2>
+        <form id = "asd" action = "/add" method = "get" style = "display: none">
+             <div class="form-group text-center">
+            <input type="text" class="form-control" name="title" text = "title" title = "Title">
+            <input type="text" class="form-control" name="url" text = "Image URL" title = "URL">
+            <input class = "subButton" type="submit" value="Add Image" style = "float: right; margin-top: 10px">
+        </div>
+        </form>
+        <button onclick="asd(2)">Add Image</button>
+<p>
+ID: <%= user.twitter.id %><br/>
+Username: <%= user.twitter.username %><br/>
+Name: <%= user.twitter.displayName %><br/>
+<% if (user.emails) { %>
+Email: <%= user.emails[0].value %><br/>
+<% } %>
+</p>
+</div>
+</body>
+
+
+<script>
+function asd(a)
+{
+    if(a==1)
+    document.getElementById("asd").style.display="none";
+    else
+    document.getElementById("asd").style.display="block";
+}
+</script>
