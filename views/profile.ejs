@@ -2,6 +2,8 @@
     
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     
     <style>
           body   { padding-top:80px; word-wrap:break-word; background-image: url("http://www.designbolts.com/wp-content/uploads/2013/02/Carbonfiber-semi-dark-Grey-Seamless-Pattern-For-Website-Background.jpg"); opacity: 60% }
@@ -10,6 +12,8 @@
           h1 {font-size: 100px; margin-top: 20px; margin-bottom: 0px;}
           h2 {margin-top: 10px; font-size: 25px;}
           .pagehead {font-size: 50px; margin-top: 20px; padding-bottom: 10px; opacity: 40%; color: white; border-bottom: 5px; border-color: black;}
+          .grid-item { width: 200px; }
+          .grid-item--width2 {width: 400px;}
     </style>
     
     </head>
@@ -31,19 +35,35 @@
         </div>
         </form>
         <button onclick="asd(2)">Add Image</button>
-<p>
-ID: <%= user.twitter.id %><br/>
-Username: <%= user.twitter.username %><br/>
-Name: <%= user.twitter.displayName %><br/>
-<% if (user.emails) { %>
-Email: <%= user.emails[0].value %><br/>
-<% } %>
-</p>
+        <div class = "grid">
+        <% entries1 = images.map(function(elem) {
+            console.log(elem.imgUrl);
+    return '<div class = "grid-item"><img src="' + elem.imgUrl + '" onerror="imgError(this);"></img></div>';
+}) -%>
+<p><%- entries1.join("") %></p>
+</div>
+
 </div>
 </body>
 
 
 <script>
+
+$(window).load(function() {
+    $('.grid').masonry({
+        columnWidth: 300,
+        itemSelector: '.grid-item'
+    }).imagesLoaded(function() {
+            $('.grid').masonry('reload');
+        });
+});
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "https://uos.edu.pk/assets/backend/images/staff/imagenotfound.svg";
+    return true;
+}
+
 function asd(a)
 {
     if(a==1)
