@@ -15,10 +15,6 @@
           .grid {max-width:1200px}
           .grid-item {  width: 400px; float:left; display: block; padding: 7px; }
           .grid-item img { padding:10px; width: 400px; }
-          .cover {
-             margin-bottom: 15px;
-         }
-         .cover .close {  float: none;
     </style>
     
     </head>
@@ -29,20 +25,13 @@
         <div class = "title">
             <h1>Pinterest Cntrl-C</h1>
             <a href = "/logout">Logout</a>
-        <a href = "/recent">View Recent Images</a>
+        <a href = "/profile">View Your Images</a>
         </div>
-        <h2 class = "pagehead">Your Images</h2>
-        <form id = "asd" action = "/add" method = "get" style = "display: none">
-             <div class="form-group text-center">
-            <input type="text" class="form-control" name="title" placeholder = "title" title = "Title">
-            <input type="text" class="form-control" name="url" placeholder = "Image URL" title = "URL">
-            <input class = "subButton" type="submit" value="Add Image" style = "float: right; margin-top: 10px">
-        </div>
-        </form>
-        <button id = "addButton" onclick="asd(2)">Add Image</button>
+        <h2 class = "pagehead">Recent Images</h2>
         <div class = "grid">
         <% entries1 = images.map(function(elem) {
-    return '<div class = "grid-item"><img src="' + elem.imgUrl + '" onerror="imgError(this);"></img><form action="/remove/' + elem._id + '"><button class = "close">Remove</button></form></div>';
+            console.log(elem.imgUrl);
+    return '<div class = "grid-item"><img src="' + elem.imgUrl + '" onerror="imgError(this);"></img></div>';
 }) -%>
 <p><%- entries1.join("") %></p>
 </div>
@@ -78,3 +67,4 @@ function asd(a)
     }
 }
 </script>
+

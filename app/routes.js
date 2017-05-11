@@ -45,6 +45,24 @@ app.get('/profile', isLoggedIn, function(req, res) {
         });
     });
     
+    app.get('/recent', isLoggedIn, function(req, res) {
+        image.find({}, function(err, data) {
+        
+        res.render('recent.ejs', {
+            images: data,
+            user: req.user
+            // get the user out of session and pass to template
+        });
+        });
+    });
+    
+    app.get('/remove/:id', isLoggedIn, function(req, res) {
+        image.findByIdAndRemove(req.params.id, function(err) {
+            return (err);
+        });
+        res.redirect('/profile');
+    })
+    
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
